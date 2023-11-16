@@ -1,13 +1,16 @@
 /*
 
-!/Token
-!/Tests
-
 !/.github
-!/.gitignore
+!/config
+!/docker
+!/make
+!Makefile
+!/src
+!/tests
+
 !/.gitattributes
+!/.gitignore
 !/composer.json
-!/*.dist
 
 !/LICENSE.md
 !/README.md

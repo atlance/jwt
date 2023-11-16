@@ -1,6 +1,6 @@
 {
     "name": "atlance/jwt-core",
-    "description": "Decorator of `lcobucci/jwt` 3.x library",
+    "description": "Decorator of `lcobucci/jwt` library",
     "license": "MIT",
     "type": "library",
     "keywords": [
@@ -14,24 +14,32 @@
         }
     ],
     "require": {
-        "php": "^7.4",
-        "lcobucci/jwt": "^3.2"
+        "php": "^8.1",
+        "lcobucci/jwt": "^5.0",
+        "psr/clock": "^1.0"
     },
     "require-dev": {
-        "ergebnis/composer-normalize": "^2.28",
+        "ergebnis/composer-normalize": "^2.39",
         "friendsofphp/php-cs-fixer": "^3.38",
-        "overtrue/phplint": "^3.4",
+        "overtrue/phplint": "^9.0",
         "phpstan/phpstan": "^1.10",
         "phpstan/phpstan-deprecation-rules": "^1.1",
         "phpstan/phpstan-phpunit": "^1.3",
         "phpstan/phpstan-strict-rules": "^1.5",
-        "phpunit/phpunit": "^9.6",
+        "phpunit/phpunit": "^10.4",
+        "rector/rector": "^0.18.8",
+        "symfony/clock": "^6.3",
         "vimeo/psalm": "^5.15"
     },
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Atlance\\JwtCore\\": ""
+            "Atlance\\JwtCore\\Token\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Atlance\\JwtCore\\Tests\\": "tests"
         }
     },
     "config": {
@@ -41,15 +49,18 @@
         }
     },
     "scripts": {
-        "fix": "vendor/bin/php-cs-fixer fix --config .php_cs.dist.php",
+        "cs-check": "vendor/bin/php-cs-fixer fix --config config/php_cs.dist.php --dry-run",
+        "cs-fix": "vendor/bin/php-cs-fixer fix --config config/php_cs.dist.php",
         "php-analyze": [
+            "@cs-check",
             "@phplint",
             "@phpstan",
             "@psalm"
         ],
-        "phplint": "vendor/bin/phplint -c phplint.yaml.dist",
-        "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon.dist --no-progress --memory-limit=-1",
-        "psalm": "vendor/bin/psalm -c psalm.xml.dist --no-cache --threads=6 --memory-limit=-1",
-        "tests": "XDEBUG_MODE=coverage vendor/bin/phpunit -c phpunit.xml.dist --coverage-clover ./clover.xml"
+        "php-tests": "XDEBUG_MODE=coverage vendor/bin/phpunit -c config/phpunit.xml.dist --coverage-clover ./clover.xml",
+        "phplint": "vendor/bin/phplint -c config/phplint.yaml.dist",
+        "phpstan": "vendor/bin/phpstan analyse -c config/phpstan.neon.dist --no-progress --memory-limit=-1",
+        "psalm": "vendor/bin/psalm -c config/psalm.xml.dist --no-cache --threads=6 --memory-limit=-1 --shepherd",
+        "rector": "vendor/bin/rector process -c config/rector.dist.php"
     }
 }
