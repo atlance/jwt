@@ -1,0 +1,19 @@
+parameters:
+    level: max
+    bootstrapFiles:
+        - ../vendor/autoload.php
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+    tmpDir: ../var/analyze
+    fileExtensions:
+        - php
+    paths:
+        - ../src
+    ignoreErrors:
+        -
+            message: '#Method Atlance\\JwtCore\\Token\\DataSet::(iss|sub|aud|exp|nbf|iat|jti)\(\) should return#'
+            path: ../src/DataSet.php
+    excludePaths:
+        - ../vendor
+        - ../var
+
