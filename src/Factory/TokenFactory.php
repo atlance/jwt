@@ -18,7 +18,7 @@ final class TokenFactory implements TokenFactoryInterface
         $this->builder = $builder;
     }
 
-    public function create(DataSetInterface $dataSet): JWT\Token
+    public function create(DataSetInterface $dataSet): JWT\UnencryptedToken
     {
         return $this->builder
             ->issuedBy($dataSet->iss())

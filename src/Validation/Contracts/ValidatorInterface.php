@@ -8,5 +8,5 @@ use Lcobucci\JWT;
 
 interface ValidatorInterface
 {
-    public function assert(JWT\Token $token): void;
+    public function assert(JWT\UnencryptedToken $token): void;
 }

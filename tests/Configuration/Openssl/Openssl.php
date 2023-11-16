@@ -11,10 +11,17 @@ final class Openssl extends AbstractCommand
 {
     /** Signature algorithm id: 'ES256', 'ES384', 'ES512' etc. */
     public string $algorithm_id;
-    /** # The path to `public.pem`. */
+
+    /** The path to `public.pem`. */
     public string $public_key;
-    /** # The path to `private.pem`. */
+
+    /**
+     * The path to `private.pem`.
+     *
+     * @var non-empty-string
+     */
     public string $private_key;
+
     /** The pass phrase for `private.pem`. */
     public string $private_passphrase;
 }

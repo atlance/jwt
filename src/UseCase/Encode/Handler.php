@@ -12,6 +12,7 @@ use Atlance\JwtCore\Token\Validation\Contracts\ValidatorInterface;
 final class Handler implements EncodeInterface
 {
     private TokenFactoryInterface $factory;
+
     private ValidatorInterface $validator;
 
     public function __construct(TokenFactoryInterface $factory, ValidatorInterface $validator)

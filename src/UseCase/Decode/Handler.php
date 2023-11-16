@@ -13,6 +13,7 @@ use Lcobucci\JWT;
 final class Handler implements DecodeInterface
 {
     private JWT\Parser $parser;
+
     private ValidatorInterface $validator;
 
     public function __construct(JWT\Parser $parser, ValidatorInterface $validator)
@@ -22,6 +23,8 @@ final class Handler implements DecodeInterface
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @psalm-suppress ArgumentTypeCoercion
      * @psalm-suppress MixedArgumentTypeCoercion
      *
@@ -34,6 +37,8 @@ final class Handler implements DecodeInterface
     public function decode(string $value): DataSetInterface
     {
         $token = $this->parser->parse($value);
+        \assert($token instanceof JWT\UnencryptedToken);
+
         $this->validator->assert($token);
 
         return DataSetFactory::fromJWT($token);

@@ -13,9 +13,13 @@ final class Builder implements JWTBuilderInterface
     public const TTL = 3600;
 
     private JWT\Builder $tokenBuilder;
+
     private JWT\Signer $signer;
+
     private JWT\Signer\Key $key;
+
     private Clock $clock;
+
     private int $ttl;
 
     public function __construct(
@@ -45,7 +49,7 @@ final class Builder implements JWTBuilderInterface
     public function expiresAt(\DateTimeImmutable $expiration = null): self
     {
         $builder = clone $this;
-        if (null === $expiration) {
+        if (!$expiration instanceof \DateTimeImmutable) {
             $expiration = $builder->clock->now()->setTimestamp(time() + $builder->ttl);
         }
 
@@ -105,7 +109,7 @@ final class Builder implements JWTBuilderInterface
         return $builder;
     }
 
-    /** @param mixed $value */
+    /** {@inheritdoc} */
     public function withHeader(string $name, $value): self
     {
         $builder = clone $this;
@@ -130,7 +134,7 @@ final class Builder implements JWTBuilderInterface
         return $builder;
     }
 
-    /** @param mixed $value */
+    /** {@inheritdoc} */
     public function withClaim(string $name, $value): self
     {
         $builder = clone $this;
@@ -156,7 +160,7 @@ final class Builder implements JWTBuilderInterface
     }
 
     /** {@inheritdoc} */
-    public function getToken(JWT\Signer $signer = null, JWT\Signer\Key $key = null): JWT\Token
+    public function getToken(JWT\Signer $signer = null, JWT\Signer\Key $key = null): JWT\Token\Plain
     {
         $builder = clone $this;
 

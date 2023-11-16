@@ -23,9 +23,9 @@ use Atlance\JwtCore\Token\Contracts\DataSet\RegisteredClaimsInterface as Claim;
 final class EncodeDecodeTest extends KernelTestCase
 {
     /**
-     * @dataProvider dataset
-     *
      * @param class-string<\Throwable>|null $exception
+     *
+     * @dataProvider dataset
      */
     public function test(DataSetInterface $dataSet, string $exception = null): void
     {

@@ -25,7 +25,7 @@ final class ValidatorFactory
                     $configuration->openssl->private_passphrase
                 )
             ),
-            new Constraint\ValidAt(SystemClock::fromSystemTimezone()),
+            new Constraint\StrictValidAt(SystemClock::fromSystemTimezone()),
             new HasClaim($configuration->jwt->claims->client_claim_name)
         );
     }

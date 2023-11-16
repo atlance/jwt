@@ -12,5 +12,5 @@ interface DataSetFactoryInterface
     /** @param non-empty-array<non-empty-string,mixed> $hashtable */
     public static function fromHashTable(array $hashtable): DataSetInterface;
 
-    public static function fromJWT(JWT\Token $jwt): DataSetInterface;
+    public static function fromJWT(JWT\UnencryptedToken $jwt): DataSetInterface;
 }

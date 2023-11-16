@@ -16,7 +16,7 @@ use Atlance\JwtCore\Token\Factory\DataSetFactory;
  */
 final class DataSetFixture
 {
-    private static ?Configuration $staticConfiguration;
+    private static ?Configuration $staticConfiguration = null;
 
     public static function full(array $override = []): DataSetInterface
     {

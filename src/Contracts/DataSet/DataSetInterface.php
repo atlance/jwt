@@ -12,26 +12,29 @@ interface DataSetInterface extends RegisteredClaimsInterface
     /**
      * Unregistered claims as associative array (MUST NOT contain registered names).
      *
-     * @return array<string, mixed>|null
+     * @return non-empty-array<non-empty-string, mixed>|null
      */
     public function claims(): ?array;
 
     /**
      * JWT headers as associative array.
      *
-     * @return array<string, mixed>|null
+     * @return non-empty-array<non-empty-string, mixed>|null
      */
     public function headers(): ?array;
 
     /**
      * @param mixed $default
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function get(string $name, $default = null);
 
     /**
-     * @param mixed $value
+     * @param non-empty-string $name
+     * @param mixed            $value
+     *
+     * @return $this
      */
     public function set(string $name, $value): self;
 }

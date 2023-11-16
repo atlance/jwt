@@ -13,11 +13,11 @@ use Atlance\JwtCore\Token\Contracts\DataSet\DataSetInterface;
  */
 final class DataSet implements DataSetInterface
 {
-    /** @var array<string, mixed> */
+    /** @var non-empty-array<non-empty-string, mixed> */
     private array $hashtable;
 
     /**
-     * @param array<string, mixed> $hashtable
+     * @param non-empty-array<non-empty-string, mixed> $hashtable
      */
     public function __construct(array $hashtable)
     {
@@ -39,7 +39,7 @@ final class DataSet implements DataSetInterface
     /** {@inheritdoc} */
     public function aud(): iterable
     {
-        return $this->get(self::AUDIENCE, []);
+        return $this->get(self::AUDIENCE) ?? [];
     }
 
     /** {@inheritdoc} */
@@ -88,16 +88,18 @@ final class DataSet implements DataSetInterface
     public function headers(): ?array
     {
         /** @var mixed $headers */
-        $headers = $this->get('headers');
+        $headers = $this->get('headers', []);
 
-        return \is_array($headers) ? $headers : null;
+        return \is_array($headers) && [] !== $headers ? $headers : null;
     }
 
+    /** {@inheritdoc} */
     public function get(string $name, $default = null)
     {
         return $this->hashtable[$name] ?? $default;
     }
 
+    /** {@inheritdoc} */
     public function set(string $name, $value): self
     {
         $this->hashtable[$name] = $value;

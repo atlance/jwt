@@ -17,8 +17,10 @@ final class DataSetFactory implements DataSetFactoryInterface
         return new DataSet($hashtable);
     }
 
-    public static function fromJWT(JWT\Token $jwt): DataSetInterface
+    /** @psalm-suppress ArgumentTypeCoercion */
+    public static function fromJWT(JWT\UnencryptedToken $jwt): DataSetInterface
     {
+        // @phpstan-ignore-next-line
         return (new DataSet($jwt->claims()->all()))->set('headers', $jwt->headers()->all());
     }
 }

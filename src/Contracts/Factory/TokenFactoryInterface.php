@@ -9,5 +9,5 @@ use Lcobucci\JWT;
 
 interface TokenFactoryInterface
 {
-    public function create(DataSetInterface $dataSet): JWT\Token;
+    public function create(DataSetInterface $dataSet): JWT\UnencryptedToken;
 }

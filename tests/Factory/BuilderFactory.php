@@ -10,13 +10,15 @@ use Atlance\JwtCore\Token\Contracts\Builder\Decorator\JWTBuilderInterface;
 use Atlance\JwtCore\Token\Factory\SignerResolver;
 use Lcobucci\Clock\SystemClock;
 use Lcobucci\JWT;
+use Lcobucci\JWT\Encoding\ChainedFormatter;
+use Lcobucci\JWT\Encoding\JoseEncoder;
 
 final class BuilderFactory
 {
     public static function create(Configuration $configuration): JWTBuilderInterface
     {
         return new Builder(
-            new JWT\Builder(),
+            new JWT\Token\Builder(new JoseEncoder(), ChainedFormatter::withUnixTimestampDates()),
             SignerResolver::resolve($configuration->openssl->algorithm_id),
             JWT\Signer\Key\InMemory::file(
                 $configuration->openssl->private_key,

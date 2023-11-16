@@ -16,14 +16,18 @@ use PHPUnit\Framework\TestCase;
 class KernelTestCase extends TestCase
 {
     private ?EncodeInterface $encoder = null;
+
     private ?DecodeInterface $decoder = null;
-    private static ?Configuration $staticConfiguration;
-    private static ?EncodeInterface $staticEncoder;
-    private static ?DecodeInterface $staticDecoder;
+
+    private static ?Configuration $staticConfiguration = null;
+
+    private static ?EncodeInterface $staticEncoder = null;
+
+    private static ?DecodeInterface $staticDecoder = null;
 
     public function encode(DataSetInterface $claimset): string
     {
-        if (null === $this->encoder) {
+        if (!$this->encoder instanceof \Atlance\JwtCore\Token\Contracts\EncodeInterface) {
             throw new \RuntimeException('Encoder must be initialized.');
         }
 
@@ -32,7 +36,7 @@ class KernelTestCase extends TestCase
 
     public function decode(string $encodedToken): DataSetInterface
     {
-        if (null === $this->decoder) {
+        if (!$this->decoder instanceof \Atlance\JwtCore\Token\Contracts\DecodeInterface) {
             throw new \RuntimeException('Decoder must be initialized.');
         }
 

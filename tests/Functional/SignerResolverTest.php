@@ -10,15 +10,16 @@ use PHPUnit\Framework\TestCase;
 class SignerResolverTest extends TestCase
 {
     /**
-     * @dataProvider dataset
-     *
      * @param class-string<\Throwable>|null $exception
+     *
+     * @dataProvider dataset
      */
     public function test(string $algorithmId, string $exception = null): void
     {
         if (null !== $exception) {
             self::expectException($exception);
         }
+
         $signer = SignerResolver::resolve($algorithmId);
 
         self::assertInstanceOf(SignerResolver::ALGORITHM_MAP[$algorithmId], $signer);

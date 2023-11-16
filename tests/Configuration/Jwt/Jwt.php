@@ -10,6 +10,7 @@ use Atlance\JwtCore\Tests\Dto\AbstractCommand;
 final class Jwt extends AbstractCommand
 {
     public Claims $claims;
+
     public Options $options;
 
     public function setClaims(array $value): void
