@@ -5,15 +5,13 @@ declare(strict_types=1);
 namespace Atlance\JwtCore\Tests\Functional;
 
 use Atlance\JwtCore\Token\Factory\SignerResolver;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class SignerResolverTest extends TestCase
 {
-    /**
-     * @param class-string<\Throwable>|null $exception
-     *
-     * @dataProvider dataset
-     */
+    /** @param class-string<\Throwable>|null $exception */
+    #[DataProvider('dataset')]
     public function test(string $algorithmId, string $exception = null): void
     {
         if (null !== $exception) {

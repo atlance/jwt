@@ -11,11 +11,8 @@ use Lcobucci\JWT;
 
 final class TokenFactory implements TokenFactoryInterface
 {
-    private JWTBuilderInterface $builder;
-
-    public function __construct(JWTBuilderInterface $builder)
+    public function __construct(private readonly JWTBuilderInterface $builder)
     {
-        $this->builder = $builder;
     }
 
     public function create(DataSetInterface $dataSet): JWT\UnencryptedToken

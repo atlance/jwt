@@ -24,13 +24,15 @@
       <clover outputFile="../var/coverage/xml/coverage.xml"/>
       <html outputDirectory="../var/coverage/html"/>
     </report>
-    <include>
-      <directory suffix=".php">../src</directory>
-    </include>
   </coverage>
   <testsuites>
     <testsuite name="jwt">
       <directory>../tests</directory>
     </testsuite>
   </testsuites>
+  <source>
+    <include>
+      <directory suffix=".php">../src</directory>
+    </include>
+  </source>
 </phpunit>

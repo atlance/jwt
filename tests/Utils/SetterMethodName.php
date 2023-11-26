@@ -6,7 +6,7 @@ namespace Atlance\JwtCore\Tests\Utils;
 
 final class SetterMethodName
 {
-    private string $name;
+    private readonly string $name;
 
     private function __construct(string $name)
     {

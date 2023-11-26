@@ -19,6 +19,8 @@ interface JWTBuilderInterface extends JWT\Builder
 
     /**
      * Configures the token id.
+     *
+     * @param non-empty-string|null $id
      */
     public function identifiedBy(string $id = null): self;
 
@@ -27,6 +29,8 @@ interface JWTBuilderInterface extends JWT\Builder
 
     /**
      * Configures the issuer.
+     *
+     * @param non-empty-string|null $issuer
      */
     public function issuedBy(string $issuer = null): self;
 
@@ -35,16 +39,18 @@ interface JWTBuilderInterface extends JWT\Builder
 
     /**
      * Configures the subject.
+     *
+     * @param non-empty-string|null $subject
      */
     public function relatedTo(string $subject = null): self;
 
     /** Returns a signed token to be used */
-    public function getToken(JWT\Signer $signer = null, JWT\Signer\Key $key = null): JWT\Token\Plain;
+    public function getToken(JWT\Signer $signer = null, JWT\Signer\Key $key = null): JWT\UnencryptedToken;
 
     /**
      * Configures a claims.
      *
-     * @param non-empty-array<string,mixed>|null $claims
+     * @param non-empty-array<non-empty-string,mixed>|null $claims
      *
      * @throws JWT\Token\RegisteredClaimGiven when trying to set a registered claim
      */
@@ -53,7 +59,7 @@ interface JWTBuilderInterface extends JWT\Builder
     /**
      * Configures a headers.
      *
-     * @param non-empty-array<string,mixed>|null $headers
+     * @param non-empty-array<non-empty-string,mixed>|null $headers
      */
     public function withHeaders(array $headers = null): self;
 }

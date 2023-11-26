@@ -5,35 +5,18 @@ declare(strict_types=1);
 namespace Atlance\JwtCore\Token;
 
 use Atlance\JwtCore\Token\Contracts\Builder\Decorator\JWTBuilderInterface;
-use Lcobucci\Clock\Clock;
 use Lcobucci\JWT;
+use Psr\Clock\ClockInterface;
 
 final class Builder implements JWTBuilderInterface
 {
-    public const TTL = 3600;
-
-    private JWT\Builder $tokenBuilder;
-
-    private JWT\Signer $signer;
-
-    private JWT\Signer\Key $key;
-
-    private Clock $clock;
-
-    private int $ttl;
-
     public function __construct(
-        JWT\Builder $tokenBuilder,
-        JWT\Signer $signer,
-        JWT\Signer\Key $key,
-        Clock $clock,
-        int $ttl
+        private JWT\Builder $tokenBuilder,
+        private JWT\Signer $signer,
+        private JWT\Signer\Key $key,
+        private ClockInterface $clock,
+        private int $ttl
     ) {
-        $this->tokenBuilder = $tokenBuilder;
-        $this->signer = $signer;
-        $this->key = $key;
-        $this->clock = $clock;
-        $this->ttl = $ttl;
     }
 
     /** {@inheritdoc} */
@@ -110,7 +93,7 @@ final class Builder implements JWTBuilderInterface
     }
 
     /** {@inheritdoc} */
-    public function withHeader(string $name, $value): self
+    public function withHeader(string $name, mixed $value): self
     {
         $builder = clone $this;
         $builder->tokenBuilder = $builder->tokenBuilder->withHeader($name, $value);
@@ -135,7 +118,7 @@ final class Builder implements JWTBuilderInterface
     }
 
     /** {@inheritdoc} */
-    public function withClaim(string $name, $value): self
+    public function withClaim(string $name, mixed $value): self
     {
         $builder = clone $this;
         $builder->tokenBuilder = $builder->tokenBuilder->withClaim($name, $value);
@@ -160,7 +143,7 @@ final class Builder implements JWTBuilderInterface
     }
 
     /** {@inheritdoc} */
-    public function getToken(JWT\Signer $signer = null, JWT\Signer\Key $key = null): JWT\Token\Plain
+    public function getToken(JWT\Signer $signer = null, JWT\Signer\Key $key = null): JWT\UnencryptedToken
     {
         $builder = clone $this;
 

@@ -8,20 +8,17 @@ use Lcobucci\JWT;
 
 final class Validator implements Contracts\ValidatorInterface
 {
-    private JWT\Validator $validator;
-
     /**
      * @var JWT\Validation\Constraint[]
      */
-    private array $constraints;
+    private readonly array $constraints;
 
-    public function __construct(JWT\Validator $validator, JWT\Validation\Constraint ...$constraints)
+    public function __construct(private readonly JWT\Validator $validator, JWT\Validation\Constraint ...$constraints)
     {
-        $this->validator = $validator;
         $this->constraints = $constraints;
     }
 
-    public function assert(JWT\Token $token): void
+    public function assert(JWT\UnencryptedToken $token): void
     {
         $this->validator->assert($token, ...$this->constraints);
     }

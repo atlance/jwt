@@ -23,18 +23,8 @@ interface DataSetInterface extends RegisteredClaimsInterface
      */
     public function headers(): ?array;
 
-    /**
-     * @param mixed $default
-     *
-     * @return mixed|null
-     */
-    public function get(string $name, $default = null);
+    public function get(string $name, mixed $default = null): mixed;
 
-    /**
-     * @param non-empty-string $name
-     * @param mixed            $value
-     *
-     * @return $this
-     */
-    public function set(string $name, $value): self;
+    /** @param non-empty-string $name */
+    public function set(string $name, mixed $value): self;
 }

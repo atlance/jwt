@@ -11,11 +11,9 @@ use Lcobucci\JWT\Validation\ConstraintViolation;
 
 final class HasClaim implements ConstraintInterface
 {
-    private string $claim;
-
-    public function __construct(string $claim)
+    /** @param non-empty-string $claim */
+    public function __construct(private readonly string $claim)
     {
-        $this->claim = $claim;
     }
 
     /** {@inheritdoc} */

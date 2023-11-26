@@ -8,9 +8,9 @@ use Atlance\JwtCore\Tests\Configuration\Configuration;
 use Atlance\JwtCore\Token\Validation\Constraint\HasClaim;
 use Atlance\JwtCore\Token\Validation\Contracts\ValidatorInterface;
 use Atlance\JwtCore\Token\Validation\Validator;
-use Lcobucci\Clock\SystemClock;
 use Lcobucci\JWT;
 use Lcobucci\JWT\Validation\Constraint;
+use Symfony\Component\Clock\Clock;
 
 final class ValidatorFactory
 {
@@ -25,7 +25,7 @@ final class ValidatorFactory
                     $configuration->openssl->private_passphrase
                 )
             ),
-            new Constraint\StrictValidAt(SystemClock::fromSystemTimezone()),
+            new Constraint\StrictValidAt(new Clock()),
             new HasClaim($configuration->jwt->claims->client_claim_name)
         );
     }

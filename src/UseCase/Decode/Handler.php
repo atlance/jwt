@@ -12,14 +12,8 @@ use Lcobucci\JWT;
 
 final class Handler implements DecodeInterface
 {
-    private JWT\Parser $parser;
-
-    private ValidatorInterface $validator;
-
-    public function __construct(JWT\Parser $parser, ValidatorInterface $validator)
+    public function __construct(private readonly JWT\Parser $parser, private readonly ValidatorInterface $validator)
     {
-        $this->parser = $parser;
-        $this->validator = $validator;
     }
 
     /**

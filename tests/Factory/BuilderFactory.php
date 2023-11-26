@@ -8,10 +8,10 @@ use Atlance\JwtCore\Tests\Configuration\Configuration;
 use Atlance\JwtCore\Token\Builder;
 use Atlance\JwtCore\Token\Contracts\Builder\Decorator\JWTBuilderInterface;
 use Atlance\JwtCore\Token\Factory\SignerResolver;
-use Lcobucci\Clock\SystemClock;
 use Lcobucci\JWT;
 use Lcobucci\JWT\Encoding\ChainedFormatter;
 use Lcobucci\JWT\Encoding\JoseEncoder;
+use Symfony\Component\Clock\Clock;
 
 final class BuilderFactory
 {
@@ -24,7 +24,7 @@ final class BuilderFactory
                 $configuration->openssl->private_key,
                 $configuration->openssl->private_passphrase
             ),
-            SystemClock::fromSystemTimezone(),
+            new Clock(),
             $configuration->jwt->options->ttl
         );
     }

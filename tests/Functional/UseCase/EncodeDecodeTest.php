@@ -9,6 +9,7 @@ use Atlance\JwtCore\Tests\Functional\KernelTestCase;
 use Atlance\JwtCore\Tests\Utils\Factory\DateTimeWithoutMicroseconds\Factory;
 use Atlance\JwtCore\Token\Contracts\DataSet\DataSetInterface;
 use Atlance\JwtCore\Token\Contracts\DataSet\RegisteredClaimsInterface as Claim;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * Questions about dates:
@@ -22,11 +23,8 @@ use Atlance\JwtCore\Token\Contracts\DataSet\RegisteredClaimsInterface as Claim;
  */
 final class EncodeDecodeTest extends KernelTestCase
 {
-    /**
-     * @param class-string<\Throwable>|null $exception
-     *
-     * @dataProvider dataset
-     */
+    /** @param class-string<\Throwable>|null $exception */
+    #[DataProvider('dataset')]
     public function test(DataSetInterface $dataSet, string $exception = null): void
     {
         if (null !== $exception) {
