@@ -27,7 +27,7 @@ class KernelTestCase extends TestCase
 
     public function encode(DataSetInterface $claimset): string
     {
-        if (!$this->encoder instanceof \Atlance\JwtCore\Token\Contracts\EncodeInterface) {
+        if (!$this->encoder instanceof EncodeInterface) {
             throw new \RuntimeException('Encoder must be initialized.');
         }
 
@@ -36,7 +36,7 @@ class KernelTestCase extends TestCase
 
     public function decode(string $encodedToken): DataSetInterface
     {
-        if (!$this->decoder instanceof \Atlance\JwtCore\Token\Contracts\DecodeInterface) {
+        if (!$this->decoder instanceof DecodeInterface) {
             throw new \RuntimeException('Decoder must be initialized.');
         }
 

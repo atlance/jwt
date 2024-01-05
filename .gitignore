@@ -2,6 +2,8 @@
 
 !/.github
 !/config
+!/docker
+!/make
 !/src
 !/tests
 
@@ -10,4 +12,5 @@
 !/composer.json
 
 !/LICENSE.md
+!/Makefile
 !/README.md
