@@ -19,17 +19,18 @@
         "psr/clock": "^1.0"
     },
     "require-dev": {
-        "ergebnis/composer-normalize": "^2.39",
-        "friendsofphp/php-cs-fixer": "^3.38",
-        "overtrue/phplint": "^9.0",
-        "phpstan/phpstan": "^1.10",
-        "phpstan/phpstan-deprecation-rules": "^1.1",
-        "phpstan/phpstan-phpunit": "^1.3",
-        "phpstan/phpstan-strict-rules": "^1.5",
-        "phpunit/phpunit": "^10.4",
-        "rector/rector": "^0.18.8",
-        "symfony/clock": "^6.3",
-        "vimeo/psalm": "^5.15"
+        "ergebnis/composer-normalize": "@dev",
+        "friendsofphp/php-cs-fixer": "@dev",
+        "overtrue/phplint": "@dev",
+        "phpstan/phpstan": "@dev",
+        "phpstan/phpstan-deprecation-rules": "@dev",
+        "phpstan/phpstan-phpunit": "@dev",
+        "phpstan/phpstan-strict-rules": "@dev",
+        "phpunit/phpunit": "@dev",
+        "psalm/plugin-phpunit": "@dev",
+        "rector/rector": "@dev",
+        "symfony/clock": "@dev",
+        "vimeo/psalm": "@dev"
     },
     "minimum-stability": "stable",
     "autoload": {

@@ -15,13 +15,12 @@ abstract class AbstractCommand
     {
     }
 
-    /** @return static */
-    public static function fromArray(array $properties = [])
+    public static function fromArray(array $properties = []): static
     {
         $object = new static();
-        /** @psalm-var mixed $value */
+        /** @var mixed $value */
         foreach ($properties as $property => $value) {
-            /** @psalm-var string $property */
+            /** @var string $property */
             if (property_exists(static::class, $property)) {
                 $method = SetterMethodName::fromSnakeCasePropertyName($property)->getName();
                 if (\is_callable([$object, $method])) {

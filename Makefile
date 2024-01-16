@@ -14,7 +14,7 @@ env:
 
 down-clear:	## Down service and remove volumes.
 	docker-compose down --remove-orphans -v
-	rm -rf ./var/* ./vendor/*
+	rm -rf var vendor composer.lock
 
 .PHONY: help
 

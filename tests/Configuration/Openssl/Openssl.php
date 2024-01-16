@@ -12,7 +12,11 @@ final class Openssl extends AbstractCommand
     /** Signature algorithm id: 'ES256', 'ES384', 'ES512' etc. */
     public string $algorithm_id;
 
-    /** The path to `public.pem`. */
+    /**
+     * @psalm-suppress PossiblyUnusedProperty
+     *
+     * The path to `public.pem`.
+     */
     public string $public_key;
 
     /**

@@ -8,5 +8,6 @@ use Atlance\JwtCore\Token\Contracts\DataSet\DataSetInterface;
 
 interface EncodeInterface
 {
+    /** @return non-empty-string */
     public function encode(DataSetInterface $dataSet): string;
 }

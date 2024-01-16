@@ -25,6 +25,7 @@ class KernelTestCase extends TestCase
 
     private static ?DecodeInterface $staticDecoder = null;
 
+    /** @return non-empty-string */
     public function encode(DataSetInterface $claimset): string
     {
         if (!$this->encoder instanceof EncodeInterface) {
@@ -34,6 +35,7 @@ class KernelTestCase extends TestCase
         return $this->encoder->encode($claimset);
     }
 
+    /** @param non-empty-string $encodedToken */
     public function decode(string $encodedToken): DataSetInterface
     {
         if (!$this->decoder instanceof DecodeInterface) {
