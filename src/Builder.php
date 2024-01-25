@@ -29,7 +29,7 @@ final class Builder implements JWTBuilderInterface
     }
 
     /** {@inheritdoc} */
-    public function expiresAt(\DateTimeImmutable $expiration = null): self
+    public function expiresAt(?\DateTimeImmutable $expiration = null): self
     {
         $builder = clone $this;
         if (!$expiration instanceof \DateTimeImmutable) {
@@ -42,7 +42,7 @@ final class Builder implements JWTBuilderInterface
     }
 
     /** {@inheritdoc} */
-    public function identifiedBy(string $id = null): self
+    public function identifiedBy(?string $id = null): self
     {
         $builder = clone $this;
         if (null !== $id) {
@@ -53,7 +53,7 @@ final class Builder implements JWTBuilderInterface
     }
 
     /** {@inheritdoc} */
-    public function issuedAt(\DateTimeImmutable $issuedAt = null): self
+    public function issuedAt(?\DateTimeImmutable $issuedAt = null): self
     {
         $builder = clone $this;
         $builder->tokenBuilder = $builder->tokenBuilder->issuedAt($issuedAt ?? $this->clock->now());
@@ -62,7 +62,7 @@ final class Builder implements JWTBuilderInterface
     }
 
     /** {@inheritdoc} */
-    public function issuedBy(string $issuer = null): self
+    public function issuedBy(?string $issuer = null): self
     {
         $builder = clone $this;
         if (null !== $issuer) {
@@ -73,7 +73,7 @@ final class Builder implements JWTBuilderInterface
     }
 
     /** {@inheritdoc} */
-    public function canOnlyBeUsedAfter(\DateTimeImmutable $notBefore = null): self
+    public function canOnlyBeUsedAfter(?\DateTimeImmutable $notBefore = null): self
     {
         $builder = clone $this;
         $builder->tokenBuilder = $builder->tokenBuilder->canOnlyBeUsedAfter($notBefore ?? $builder->clock->now());
@@ -82,7 +82,7 @@ final class Builder implements JWTBuilderInterface
     }
 
     /** {@inheritdoc} */
-    public function relatedTo(string $subject = null): self
+    public function relatedTo(?string $subject = null): self
     {
         $builder = clone $this;
         if (null !== $subject) {
@@ -102,7 +102,7 @@ final class Builder implements JWTBuilderInterface
     }
 
     /** {@inheritdoc} */
-    public function withHeaders(array $headers = null): self
+    public function withHeaders(?array $headers = null): self
     {
         if (null === $headers) {
             return $this;
@@ -127,7 +127,7 @@ final class Builder implements JWTBuilderInterface
     }
 
     /** {@inheritdoc} */
-    public function withClaims(array $claims = null): self
+    public function withClaims(?array $claims = null): self
     {
         if (null === $claims) {
             return $this;
@@ -143,7 +143,7 @@ final class Builder implements JWTBuilderInterface
     }
 
     /** {@inheritdoc} */
-    public function getToken(JWT\Signer $signer = null, JWT\Signer\Key $key = null): JWT\UnencryptedToken
+    public function getToken(?JWT\Signer $signer = null, ?JWT\Signer\Key $key = null): JWT\UnencryptedToken
     {
         $builder = clone $this;
 

@@ -25,7 +25,7 @@ final class EncodeDecodeTest extends KernelTestCase
 {
     /** @param class-string<\Throwable>|null $exception */
     #[DataProvider('dataset')]
-    public function test(DataSetInterface $dataSet, string $exception = null): void
+    public function test(DataSetInterface $dataSet, ?string $exception = null): void
     {
         if (null !== $exception) {
             self::expectException($exception);

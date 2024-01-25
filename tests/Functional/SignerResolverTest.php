@@ -12,7 +12,7 @@ class SignerResolverTest extends TestCase
 {
     /** @param class-string<\Throwable>|null $exception */
     #[DataProvider('dataset')]
-    public function test(string $algorithmId, string $exception = null): void
+    public function test(string $algorithmId, ?string $exception = null): void
     {
         if (null !== $exception) {
             self::expectException($exception);

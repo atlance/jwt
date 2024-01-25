@@ -15,37 +15,37 @@ interface JWTBuilderInterface extends JWT\Builder
     public function permittedFor(string ...$audiences): self;
 
     /** Configures the expiration time */
-    public function expiresAt(\DateTimeImmutable $expiration = null): self;
+    public function expiresAt(?\DateTimeImmutable $expiration = null): self;
 
     /**
      * Configures the token id.
      *
      * @param non-empty-string|null $id
      */
-    public function identifiedBy(string $id = null): self;
+    public function identifiedBy(?string $id = null): self;
 
     /** Configures the time that the token was issued */
-    public function issuedAt(\DateTimeImmutable $issuedAt = null): self;
+    public function issuedAt(?\DateTimeImmutable $issuedAt = null): self;
 
     /**
      * Configures the issuer.
      *
      * @param non-empty-string|null $issuer
      */
-    public function issuedBy(string $issuer = null): self;
+    public function issuedBy(?string $issuer = null): self;
 
     /** Configures the time before which the token cannot be accepted. */
-    public function canOnlyBeUsedAfter(\DateTimeImmutable $notBefore = null): self;
+    public function canOnlyBeUsedAfter(?\DateTimeImmutable $notBefore = null): self;
 
     /**
      * Configures the subject.
      *
      * @param non-empty-string|null $subject
      */
-    public function relatedTo(string $subject = null): self;
+    public function relatedTo(?string $subject = null): self;
 
     /** Returns a signed token to be used */
-    public function getToken(JWT\Signer $signer = null, JWT\Signer\Key $key = null): JWT\UnencryptedToken;
+    public function getToken(?JWT\Signer $signer = null, ?JWT\Signer\Key $key = null): JWT\UnencryptedToken;
 
     /**
      * Configures a claims.
@@ -54,12 +54,12 @@ interface JWTBuilderInterface extends JWT\Builder
      *
      * @throws JWT\Token\RegisteredClaimGiven when trying to set a registered claim
      */
-    public function withClaims(array $claims = null): self;
+    public function withClaims(?array $claims = null): self;
 
     /**
      * Configures a headers.
      *
      * @param non-empty-array<non-empty-string,mixed>|null $headers
      */
-    public function withHeaders(array $headers = null): self;
+    public function withHeaders(?array $headers = null): self;
 }

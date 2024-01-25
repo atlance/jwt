@@ -10,11 +10,11 @@ RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
 $(eval $(RUN_ARGS):;@:)
 
 env:
-	cp make/${RUN_ARGS}/infrastructure/.env.dist .env
+	cp -n make/${RUN_ARGS}/infrastructure/.env.dist .env
 
 down-clear:	## Down service and remove volumes.
 	docker-compose down --remove-orphans -v
-	rm -rf var vendor composer.lock
+	rm -rf var vendor composer.lock docker-compose.yml coverage.xml
 
 .PHONY: help
 
